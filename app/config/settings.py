@@ -81,22 +81,22 @@ DATABASES = {
      #   'NAME': BASE_DIR / 'db.sqlite3',
     #}
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'defaultdb',
-    #     'USER': 'avnadmin',
-    #     'PASSWORD': 'AVNS_G9tszyLiXsbjtqm-_8s',
-    #     'HOST': 'mysql-cd90b3-santiagopoffo6-4de7.aivencloud.com',
-    #     'PORT': '19508',
-    # }
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seekos',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_G9tszyLiXsbjtqm-_8s',
+        'HOST': 'mysql-cd90b3-santiagopoffo6-4de7.aivencloud.com',
+        'PORT': '19508',
     }
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'seekos',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
 }
 
 

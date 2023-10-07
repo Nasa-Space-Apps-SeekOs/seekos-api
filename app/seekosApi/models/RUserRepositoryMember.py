@@ -8,6 +8,7 @@ class RUserRepositoryMember(models.Model):
 
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True)
     repository = models.ForeignKey('Repository', on_delete=models.CASCADE, null=True, blank=True)
+    is_property = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

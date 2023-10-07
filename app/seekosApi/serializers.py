@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from seekosApi.models import  CustomUser
+from seekosApi.models import  User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = User
         fields = '__all__'

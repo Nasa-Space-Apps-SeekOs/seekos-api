@@ -6,6 +6,8 @@ RUN apt update && apt full-upgrade -y \
     
 COPY requirements.txt /var/app/requirements.txt
 
+RUN apt install default-libmysqlclient-dev -y
+
 WORKDIR /var/app
 
 RUN pip3 install -r requirements.txt

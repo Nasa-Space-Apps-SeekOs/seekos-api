@@ -24,6 +24,8 @@ class Repository(models.Model):
     
     name = models.CharField(max_length=100)
     resume = models.CharField(max_length=100)
+    url_image = models.CharField(max_length=500)
+    url_project = models.CharField(max_length=500)
     body = models.TextField(default='Default Body Text')
     type = models.CharField(
         max_length=100,

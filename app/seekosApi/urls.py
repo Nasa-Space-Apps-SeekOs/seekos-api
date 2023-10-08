@@ -1,12 +1,13 @@
 from django.urls import include, path
 from rest_framework import routers
-from seekosApi.views import UserViewSet, CountryViewSet, RepositoryViewSet, RepositoryCommentViewSet
+from seekosApi.views import UserViewSet, CountryViewSet, RepositoryViewSet, RepositoryCommentViewSet, KeysViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet , basename='user')
 router.register(r'countries', CountryViewSet, basename='country')
 router.register(r'repositories', RepositoryViewSet, basename='repository')
 router.register(r'repository-comments', RepositoryCommentViewSet, basename='repository-comment')
+router.register(r'keys', KeysViewSet, basename='keys')
 
 
 urlpatterns = [

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from seekosApi.models import User, Country, Repository, RepositoryComment
-from seekosApi.serializers import UserSerializer, CountrySerializer, RepositorySerializer, RepositoryCommentSerializer
+from seekosApi.models import User, Country, Repository, RepositoryComment, Keys
+from seekosApi.serializers import UserSerializer, CountrySerializer, RepositorySerializer, RepositoryCommentSerializer, KeysSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -32,3 +32,8 @@ class RepositoryViewSet(viewsets.ModelViewSet):
 class RepositoryCommentViewSet(viewsets.ModelViewSet):
     queryset = RepositoryComment.objects.all()
     serializer_class = RepositoryCommentSerializer
+
+
+class KeysViewSet(viewsets.ModelViewSet):
+    queryset = Keys.objects.all()
+    serializer_class = KeysSerializer

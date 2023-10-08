@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from seekosApi.models import RepositoryComment, Country, User, Repository
+from seekosApi.models import RepositoryComment, Country, User, Repository, Keys
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,4 +23,10 @@ class RepositorySerializer(serializers.ModelSerializer):
 class RepositoryCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryComment
+        fields = '__all__'
+
+
+class KeysSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Keys
         fields = '__all__'

@@ -19,7 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
         return obj.get_full_name()
     
     def get_keys(self, obj):
-        return obj.keys.all()
+        retorno = obj.keys.all()
+        return KeysSerializer(retorno, many=True).data
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -30,7 +31,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
 class RepositorySerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
-    members = UserSerializer(many=True)
+    members = UserSerializer(many=True, required=False)
 
     class Meta:
         model = Repository
@@ -52,6 +53,16 @@ class RepositorySerializer(serializers.ModelSerializer):
     
     def get_likes(self, obj):
         return obj.likes.count()
+    
+    def to_internal_value(self, data):
+        return super().to_internal_value(data)
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        rep = super().create(validated_data)
+        # RUserRepositoryMember.objects.create(user=request.user, repository=rep, is_owner=True)
+        RUserRepositoryMember.objects.create(user=User.objects.get(id=1), repository=rep, is_property=True)
+        return rep
 
 
 class RepositoryCommentSerializer(serializers.ModelSerializer):
@@ -63,7 +74,7 @@ class RepositoryCommentSerializer(serializers.ModelSerializer):
 class KeysSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keys
-        fields = '__all__'
+        fields = ['name']
 
 
 class RUserRepositoryMemberSerializer(serializers.ModelSerializer):

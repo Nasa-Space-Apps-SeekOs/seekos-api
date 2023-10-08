@@ -8,9 +8,9 @@ class RepositoryFilter(django_filters.FilterSet):
         fields = ['search', 'key']
 
     search = django_filters.CharFilter(method='filter_by_search', label='Search')
-    key = django_filters.AllValuesFilter(field_name='keys__name', distinct=True)
-    type = django_filters.AllValuesFilter(field_name='type')
-    status = django_filters.AllValuesFilter(field_name='status')
+    key = django_filters.CharFilter(field_name='keys__name', distinct=True)
+    type = django_filters.CharFilter(field_name='type',)
+    status = django_filters.CharFilter(field_name='status')
 
     def filter_by_search(self, queryset, name, value):
         return queryset.filter(

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'seekosApi',
     'django_filters',
 ]
@@ -150,6 +151,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 APPEND_SLASH = False
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 SEARCH_API='https://seekos-search-api.onrender.com/map-phrase/'
+
 
 # LOGIN_URL = '/admin/login/'

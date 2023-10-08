@@ -24,13 +24,11 @@ class RepositoryFilter(django_filters.FilterSet):
         if response.status_code == 200:
             data = response.json()
             search = '%'.join(data['keywords'])
-            queryset = queryset.filter(
-                Q(name__icontains=search) |
-                Q(resume__icontains=search) |
-                Q(body__icontains=search) |
-                Q(type__icontains=search)
-            )
-            return queryset.filter(keys__name__in=data['tags'])
+            query = Q(keys__name__in=data['tags'])
+            query |= Q(name__icontains=search)| Q(resume__icontains=search) | Q(
+                body__icontains=search) | Q(type__icontains=search)
+
+            return queryset.filter(query)
         else:
             return queryset.filter(
                 Q(name__icontains=value) |

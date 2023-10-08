@@ -10,5 +10,7 @@ COPY requirements.txt /var/app/requirements.txt
 
 WORKDIR /var/app
 
+COPY ./app /var/app
+
 RUN pip3 install -r requirements.txt
 

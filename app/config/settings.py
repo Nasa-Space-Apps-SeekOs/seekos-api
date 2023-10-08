@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'seekosApi',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,7 @@ DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#     },
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -150,10 +151,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 APPEND_SLASH = False
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+SEARCH_API='https://seekos-search-api.onrender.com/map-phrase/'
+
 
 # LOGIN_URL = '/admin/login/'

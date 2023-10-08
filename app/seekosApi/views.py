@@ -4,6 +4,9 @@ from seekosApi.serializers import UserSerializer, CountrySerializer, RepositoryS
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from seekosApi.filters import RepositoryFilter
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -20,6 +23,9 @@ class RepositoryViewSet(viewsets.ModelViewSet):
     queryset = Repository.objects.all()
     serializer_class = RepositorySerializer
     # permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = RepositoryFilter
+
 
     @action(detail=True, methods=['get'])
     def comments(self, request, pk=None):

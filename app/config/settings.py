@@ -150,4 +150,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 APPEND_SLASH = False
 
+SEARCH_API='https://seekos-search-api.onrender.com/map-phrase/'
+
 # LOGIN_URL = '/admin/login/'

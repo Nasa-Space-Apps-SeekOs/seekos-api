@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'full_name',
             'username',
+            'keys'
         ]
 
     def get_full_name(self, obj):

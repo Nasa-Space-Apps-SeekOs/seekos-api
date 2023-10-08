@@ -5,7 +5,7 @@ REPOSITORY_TYPE = (
     ('project', 'Project'),
 )
 
-REPOSITORY_PHASES = (
+REPOSITORY_STATUS = (
     ('init', 'Init'),
     ('development', 'Development'),
     ('test', 'Test'),
@@ -18,24 +18,23 @@ class Repository(models.Model):
         db_table = 'repository'
 
     members = models.ManyToManyField('User', through='RUserRepositoryMember', related_name='member_repositories')
-    likes = models.ManyToManyField('User', related_name='liked_repositories')
-
-    keys = models.ManyToManyField('Keys', related_name='keys_repositories')
-    
+    likes = models.ManyToManyField('User', related_name='liked_repositories', null=True, blank=True)
+    keys = models.ManyToManyField('Keys', related_name='keys_repositories', null=True, blank=True)
     name = models.CharField(max_length=100)
     resume = models.CharField(max_length=100)
-    url_image = models.CharField(max_length=500)
-    url_project = models.CharField(max_length=500)
-    body = models.TextField(default='Default Body Text')
+    url_image = models.CharField(max_length=500, null=True, blank=True)
+    url_project = models.CharField(max_length=500, null=True, blank=True)
+    body = models.TextField(default='Default Body Text', null=True, blank=True)
     type = models.CharField(
         max_length=100,
         choices=REPOSITORY_TYPE,
         default=REPOSITORY_TYPE[0][0]
     )
-    phases = models.CharField(
+    status = models.CharField(
         max_length=100,
-        choices=REPOSITORY_PHASES,
-        default=REPOSITORY_PHASES[0][0]
+        choices=REPOSITORY_STATUS,
+        default=REPOSITORY_STATUS[0][0],
+        null=True,
     )
     ranking = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)

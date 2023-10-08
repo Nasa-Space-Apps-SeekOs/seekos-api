@@ -5,6 +5,8 @@ from seekosApi.serializers import UserSerializer, CountrySerializer, RepositoryS
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
+from seekosApi.filters import RepositoryFilter
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -20,6 +22,8 @@ class CountryViewSet(viewsets.ModelViewSet):
 class RepositoryViewSet(viewsets.ModelViewSet):
     queryset = Repository.objects.all()
     serializer_class = RepositorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = RepositoryFilter
 
     @action(detail=True, methods=['get'])
     def comments(self, request, pk=None):

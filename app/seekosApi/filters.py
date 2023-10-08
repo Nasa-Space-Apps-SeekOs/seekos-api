@@ -1,6 +1,7 @@
 import django_filters
 from seekosApi.models import Repository
 from django.conf import settings
+from django.db.models import Q
 import requests
 
 class RepositoryFilter(django_filters.FilterSet):
@@ -24,16 +25,16 @@ class RepositoryFilter(django_filters.FilterSet):
             data = response.json()
             search = '%'.join(data['keywords'])
             queryset = queryset.filter(
-                django_filters.Q(name__icontains=search) |
-                django_filters.Q(resume__icontains=search) |
-                django_filters.Q(body__icontains=search) |
-                django_filters.Q(type__icontains=search)
+                Q(name__icontains=search) |
+                Q(resume__icontains=search) |
+                Q(body__icontains=search) |
+                Q(type__icontains=search)
             )
             return queryset.filter(keys__name__in=data['tags'])
         else:
             return queryset.filter(
-                django_filters.Q(name__icontains=value) |
-                django_filters.Q(resume__icontains=value) |
-                django_filters.Q(body__icontains=value) |
-                django_filters.Q(type__icontains=value)
+                Q(name__icontains=value) |
+                Q(resume__icontains=value) |
+                Q(body__icontains=value) |
+                Q(type__icontains=value)
             )

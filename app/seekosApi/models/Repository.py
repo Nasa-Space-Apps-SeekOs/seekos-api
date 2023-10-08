@@ -18,10 +18,10 @@ class Repository(models.Model):
         db_table = 'repository'
 
     members = models.ManyToManyField('User', through='RUserRepositoryMember', related_name='member_repositories')
-    likes = models.ManyToManyField('User', related_name='liked_repositories', null=True, blank=True)
-    keys = models.ManyToManyField('Keys', related_name='keys_repositories', null=True, blank=True)
+    likes = models.ManyToManyField('User', related_name='liked_repositories')
+    keys = models.ManyToManyField('Keys', related_name='keys_repositories')
     name = models.CharField(max_length=100)
-    resume = models.CharField(max_length=100)
+    resume = models.CharField(max_length=250)
     url_image = models.CharField(max_length=500, null=True, blank=True)
     url_project = models.CharField(max_length=500, null=True, blank=True)
     body = models.TextField(default='Default Body Text', null=True, blank=True)

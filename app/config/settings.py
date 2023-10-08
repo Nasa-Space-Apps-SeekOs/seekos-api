@@ -78,19 +78,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-   # 'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-     #   'NAME': BASE_DIR / 'db.sqlite3',
-    #}
-
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'defaultdb',
-        'USER': 'avnadmin',
-        'PASSWORD': 'AVNS_G9tszyLiXsbjtqm-_8s',
-        'HOST': 'mysql-cd90b3-santiagopoffo6-4de7.aivencloud.com',
-        'PORT': '19508',
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'defaultdb',
+    #     'USER': 'avnadmin',
+    #     'PASSWORD': 'AVNS_G9tszyLiXsbjtqm-_8s',
+    #     'HOST': 'mysql-cd90b3-santiagopoffo6-4de7.aivencloud.com',
+    #     'PORT': '19508',
+    # }
     #     'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'seekos',
@@ -146,5 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'seekosApi.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+APPEND_SLASH = False
 
 # LOGIN_URL = '/admin/login/'

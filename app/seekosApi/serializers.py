@@ -87,6 +87,8 @@ class RepositoryCommentSerializer(serializers.ModelSerializer):
         model = RepositoryComment
         fields = '__all__'
 
+    created_at = serializers.DateTimeField(format="%d/%m/%Y", read_only=True)
+    updated_at = serializers.DateTimeField(format="%d/%m/%Y", read_only=True)
 
 class KeysSerializer(serializers.ModelSerializer):
     class Meta:

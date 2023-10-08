@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 from seekosApi.models import RepositoryComment, Country, User, Repository, Keys, RUserRepositoryMember
 
 
@@ -21,6 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
     def get_keys(self, obj):
         retorno = obj.keys.all()
         return KeysSerializer(retorno, many=True).data
+    
+    def create(self, validated_data):
+        user = User(
+            email=validated_data['email'],
+            username=validated_data['username']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        Token.objects.create(user=user)
+        return user
 
 
 class CountrySerializer(serializers.ModelSerializer):

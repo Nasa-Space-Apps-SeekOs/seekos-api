@@ -6,7 +6,7 @@ REPOSITORY_TYPE = (
 )
 
 REPOSITORY_PHASES = (
-    ('init', 'Idea'),
+    ('init', 'Init'),
     ('development', 'Development'),
     ('test', 'Test'),
     ('concluded', 'Concluded'),
@@ -16,7 +16,12 @@ class Repository(models.Model):
 
     class Meta:
         db_table = 'repository'
-        
+
+    members = models.ManyToManyField('User', through='RUserRepositoryMember', related_name='member_repositories')
+    likes = models.ManyToManyField('User', related_name='liked_repositories')
+
+    keys = models.ManyToManyField('Keys', related_name='keys_repositories')
+    
     name = models.CharField(max_length=100)
     resume = models.CharField(max_length=100)
     body = models.TextField(default='Default Body Text')

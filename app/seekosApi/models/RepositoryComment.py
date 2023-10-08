@@ -7,7 +7,7 @@ class RepositoryComment(models.Model):
         db_table = 'repository_comment'
         
     repository = models.ForeignKey('Repository', on_delete=models.CASCADE)
-    #id_user = models.CharField('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)
     comment = models.CharField(max_length=300)
     

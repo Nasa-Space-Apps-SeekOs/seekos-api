@@ -31,6 +31,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
 class RepositorySerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
+    keys = serializers.SerializerMethodField()
     members = UserSerializer(many=True, required=False)
 
     class Meta:
@@ -49,10 +50,15 @@ class RepositorySerializer(serializers.ModelSerializer):
             'updated_at',
             'members',
             'likes',
+            'keys',
         ]
     
     def get_likes(self, obj):
         return obj.likes.count()
+    
+    def get_keys(self, obj):
+        retorno = obj.keys.all()
+        return KeysSerializer(retorno, many=True).data
     
     def to_internal_value(self, data):
         return super().to_internal_value(data)
